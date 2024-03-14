@@ -82,7 +82,7 @@
               <input
                 id="km"
                 type="number"
-                value={inverted ? (amount / 1.6).toFixed(1) : amount}
+                value={inverted ? (amount / 1.609).toFixed(3) : amount}
                 disabled={inverted}
                 onChange={onConvert}
               />
@@ -92,7 +92,7 @@
               <input
                 id="miles"
                 type="number"
-                value={inverted ? amount : (amount * 1.6).toFixed(1)}
+                value={inverted ? amount : (amount * 1.609).toFixed(3)}
                 disabled={!inverted}
                 onChange={onConvert}
               />
