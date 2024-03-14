@@ -13,16 +13,51 @@
     <script type="text/babel">
       const root = document.getElementById("root");
       function App() {
-        const [counter, setCounter] = React.useState(0);
-        const onClick = () => {
-          // setCounter(counter + 1);
-          setCounter((current) => current + 1);
+        let result = 0;
+        const [amount, setAmount] = React.useState(0);
+        const [inverted, setInverted] = React.useState(false);
+        const converterHandler = (event) => {
+          setAmount(event.target.value);
         };
 
+        const resetHandler = () => {
+          setAmount(0);
+        };
+        const onFlip = () => {
+          resetHandler();
+          setInverted((current) => !current);
+        };
         return (
           <div>
-            <h3>Total Clicks : {counter}</h3>
-            <button onClick={onClick}>Button</button>
+            <h1 className="hi">Super Converter</h1>
+            <div>
+              <label htmlFor="minutes">Minutes : </label>
+              <input
+                id="minutes"
+                placeholder="Minutes"
+                type="number"
+                value={!inverted ? amount : amount * 60}
+                onChange={converterHandler}
+                disabled={inverted}
+              />
+            </div>
+            <div>
+              <label htmlFor="hours">Hours : </label>
+              <input
+                id="hours"
+                placeholder="Hours"
+                type="number"
+                value={inverted ? amount : Math.floor(amount / 60)}
+                disabled={!inverted}
+                onChange={converterHandler}
+              />
+            </div>
+            <button type="button" onClick={resetHandler}>
+              reset
+            </button>
+            <button type="button" onClick={onFlip}>
+              {inverted ? "Turn back" : "Invert"}
+            </button>
           </div>
         );
       }
