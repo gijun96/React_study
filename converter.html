@@ -29,6 +29,7 @@
         };
         return (
           <div>
+            <h3>Minutes To Hours</h3>
             <div>
               <label htmlFor="minutes">Minutes : </label>
               <input
@@ -81,7 +82,7 @@
               <input
                 id="km"
                 type="number"
-                value={inverted ? Math.round(amount / 1.6) : amount}
+                value={inverted ? (amount / 1.6).toFixed(1) : amount}
                 disabled={inverted}
                 onChange={onConvert}
               />
@@ -91,14 +92,14 @@
               <input
                 id="miles"
                 type="number"
-                value={inverted ? amount : Math.round(amount * 1.6)}
+                value={inverted ? amount : (amount * 1.6).toFixed(1)}
                 disabled={!inverted}
                 onChange={onConvert}
               />
             </div>
             <button onClick={reset}>Reset</button>
             <button onClick={invert}>
-              {inverted ? "Turn back" : "return"}
+              {inverted ? "Turn back" : "Invert"}
             </button>
           </div>
         );
